@@ -13,9 +13,6 @@
 		C82224FA28D9052A00673338 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C82224F828D9052A00673338 /* Main.storyboard */; };
 		C82224FC28D9052D00673338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C82224FB28D9052D00673338 /* Assets.xcassets */; };
 		C82224FF28D9052D00673338 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C82224FD28D9052D00673338 /* LaunchScreen.storyboard */; };
-		C822250A28D9052D00673338 /* Assignment_CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C822250928D9052D00673338 /* Assignment_CalculatorTests.swift */; };
-		C822251428D9052D00673338 /* Assignment_CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C822251328D9052D00673338 /* Assignment_CalculatorUITests.swift */; };
-		C822251628D9052D00673338 /* Assignment_CalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C822251528D9052D00673338 /* Assignment_CalculatorUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +42,7 @@
 		C82224FE28D9052D00673338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C822250028D9052D00673338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C822250528D9052D00673338 /* Assignment-CalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Assignment-CalculatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C822250928D9052D00673338 /* Assignment_CalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_CalculatorTests.swift; sourceTree = "<group>"; };
 		C822250F28D9052D00673338 /* Assignment-CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Assignment-CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C822251328D9052D00673338 /* Assignment_CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_CalculatorUITests.swift; sourceTree = "<group>"; };
-		C822251528D9052D00673338 /* Assignment_CalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment_CalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				C82224F128D9052A00673338 /* Assignment-Calculator */,
-				C822250828D9052D00673338 /* Assignment-CalculatorTests */,
-				C822251228D9052D00673338 /* Assignment-CalculatorUITests */,
 				C82224F028D9052A00673338 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,23 +100,6 @@
 				C822250028D9052D00673338 /* Info.plist */,
 			);
 			path = "Assignment-Calculator";
-			sourceTree = "<group>";
-		};
-		C822250828D9052D00673338 /* Assignment-CalculatorTests */ = {
-			isa = PBXGroup;
-			children = (
-				C822250928D9052D00673338 /* Assignment_CalculatorTests.swift */,
-			);
-			path = "Assignment-CalculatorTests";
-			sourceTree = "<group>";
-		};
-		C822251228D9052D00673338 /* Assignment-CalculatorUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C822251328D9052D00673338 /* Assignment_CalculatorUITests.swift */,
-				C822251528D9052D00673338 /* Assignment_CalculatorUITestsLaunchTests.swift */,
-			);
-			path = "Assignment-CalculatorUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +243,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C822250A28D9052D00673338 /* Assignment_CalculatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C822251428D9052D00673338 /* Assignment_CalculatorUITests.swift in Sources */,
-				C822251628D9052D00673338 /* Assignment_CalculatorUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
