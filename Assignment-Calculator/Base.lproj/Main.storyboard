@@ -172,7 +172,7 @@
                                         </constraints>
                                         <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="-">
+                                        <buttonConfiguration key="configuration" style="filled" title="‒">
                                             <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
@@ -344,7 +344,7 @@
                                             <color key="baseBackgroundColor" red="0.87843137979999997" green="0.98431372640000003" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="Operation_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jgg-wh-mY9"/>
+                                            <action selector="SpecialPlusMinus_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u4U-8K-5JH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cK-jr-Rop">

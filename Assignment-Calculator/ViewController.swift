@@ -24,10 +24,75 @@ class ViewController: UIViewController {
     var emptyResultString = false
     
     var operatorUsed:String = ""
+    let removeCharacters: Set<Character> = ["(", ")"]
+    var negate:Float = -1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    func plusMinusUpdate()
+    {
+        var firstNum:Float = 0.0
+        var secondNum:Float = 0.0
+        var Result = ResultLabel.text
+        
+        if(operatorUsed == "")
+        {
+            
+            var firstNumString = Result
+            firstNumString!.removeAll(where: { removeCharacters.contains($0) })
+           
+            firstNum = Float(firstNumString!) ?? 00
+            firstNum = firstNum * negate
+            textResult = String("(\(firstNum))")
+            ResultLabel.text = textResult
+            
+        }
+        else
+        {
+          //  var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(String.init)
+            
+            
+            let numberSplitArray = Result?.components(separatedBy: operatorUsed)
+            var firstNumString = String(numberSplitArray![0])
+            var secondNumString = String(numberSplitArray![1])
+            
+            print("first num is \(firstNumString) and 2nd num is \(secondNumString)" )
+            
+            if (secondNumString == "" || secondNumString == "0" || secondNumString == "0." || secondNumString == "-")
+            {
+                if(secondNumString == "-")
+                {
+                    secondNumString = ""
+                }
+                else
+                {
+                    secondNumString = "-"
+                }
+                
+                textResult = String("\(firstNumString)\(operatorUsed)\(secondNumString)")
+                ResultLabel.text = textResult
+                
+            }
+            else
+            {
+                secondNumString.removeAll(where: { removeCharacters.contains($0) })
+                secondNum = Float(secondNumString) ?? 00
+                secondNum = secondNum * negate
+                secondNumString = String("(\(secondNum))")
+                textResult = String("\(firstNumString)\(operatorUsed)\(secondNumString)")
+                ResultLabel.text = textResult
+                
+            }
+
+        }
+        
+
+//        textResult.removeLast()
+//        ResultLabel.text = textResult
+        
     }
     
     func clearTextResult()
@@ -35,6 +100,7 @@ class ViewController: UIViewController {
         hasDecimal = false
         textResult = ""
         ResultLabel.text = ""
+        operatorUsed = ""
         
     }
     
@@ -47,44 +113,61 @@ class ViewController: UIViewController {
     
     func deleteChar()
     {
-        textResult.removeLast()
-        ResultLabel.text = textResult
+        
+        if(ResultLabel.text != "")
+        {
+            textResult.removeLast()
+            ResultLabel.text = textResult
+            
+            if(!textResult.contains("+") && !textResult.contains("‒") &&
+               !textResult.contains("x") && !textResult.contains("÷"))
+            {
+                operatorUsed = ""
+            }
+        }
+        
     }
     
     func calculateResult()
     {
-        //To be replaced by non NSExpression
-//        let expression = NSExpression(format: textResult)
-//        let result = expression.expressionValue(with: nil, context: nil) as! Double
-//        let resultString = formatResult(result:result)
-//
-        let Result = ResultLabel.text
-      //  var firstNumber:Double! = 0.0
+        //clean the textResult by removing the parenthesis
+        var Result = ResultLabel.text
+        Result!.removeAll(where: { removeCharacters.contains($0) })
+        print("After Cleaning = \(Result)")
         
-        
-        var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Float.init)
-        var firstNum = Float(numberSplitArray?[0] ?? 00 )
-        var secondNum = Float(numberSplitArray?[1] ?? 00 )
-        var Answer:Float = 0.0
-        print("answer is \(Answer)")
-
-        switch operatorUsed
+        //calculate result will only be performed if theres operator used
+        if(operatorUsed != "")
         {
-        case "+":
-            Answer = firstNum + secondNum
-        case "-":
-            Answer = firstNum - secondNum
-        case "x":
-            Answer = firstNum * secondNum
-        case "÷":
-            Answer = firstNum / secondNum
-        default:
-            print("Invalid Operator")
-        }
+            var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Float.init)
+            var firstNum = Float(numberSplitArray?[0] ?? 00 )
+            var secondNum = Float(numberSplitArray?[1] ?? 00 )
+            var Answer:Float = 0.0
+            print("answer is \(Answer)")
 
-    
-        ResultLabel.text = String(Answer.clean)
-        textResult = ResultLabel.text
+            switch operatorUsed
+            {
+            case "+":
+                Answer = firstNum + secondNum
+            case "‒":
+                Answer = firstNum - secondNum
+            case "x":
+                Answer = firstNum * secondNum
+            case "÷":
+                Answer = firstNum / secondNum
+            default:
+                print("Invalid Operator")
+            }
+
+        
+            ResultLabel.text = String(Answer.clean)
+            textResult = ResultLabel.text
+            operatorUsed = ""
+        }
+        else
+        {
+            print("No Operator used")
+        }
+        
     }
     
 
@@ -96,9 +179,10 @@ class ViewController: UIViewController {
         
         let OperationButton:String! = (button.titleLabel?.text)
         
-        if(textResult.contains("+") || textResult.contains("-") ||
+        if(textResult.contains("+") || textResult.contains("‒") ||
            textResult.contains("x") || textResult.contains("÷"))
         {
+               
             print("contains operator already - Do Nothing")
             
         }
@@ -115,11 +199,9 @@ class ViewController: UIViewController {
             }
             
             operatorUsed = OperationButton
-            
-
             updateTextResult(value: OperationButton)
-        }
             
+        }
         
     }
     
@@ -153,16 +235,24 @@ class ViewController: UIViewController {
             }
         }
         
-
-        
-        
-        //print the tag value of thre button. THis is set in the attribute of buttons
-       // print(button.tag)
-        
-        //hide the label of button when clicked
-       // button.titleLabel?.isHidden = true
     }
     
+    
+    @IBAction func SpecialPlusMinus_Button_Pressed(_ sender: UIButton) {
+        
+        var Result = ResultLabel.text
+        
+        switch Result
+        {
+        case "":
+            updateTextResult(value: "-")
+        case "-":
+            updateTextResult(value: "")
+        default:
+            plusMinusUpdate()
+        }
+         
+    }
     
     @IBAction func Extra_Button_pressed(_ sender: UIButton) {
         
@@ -171,21 +261,17 @@ class ViewController: UIViewController {
         
         
         //can be converted to switch case (to be recoded)
-        if(ExtraButton == "C")
+        switch ExtraButton
         {
+        case "C":
             clearTextResult()
-        }
-        if(ExtraButton == "Del")
-        {
+        case "Del":
             deleteChar()
-        }
-        if(ExtraButton == "=")
-        {
+        case "=":
             calculateResult()
+        default:
+            print("Do nothing - Function not implemented yet")
         }
-        
-//        var ExtraButton:String = button.titleLabel!.text;
-        
     }
 }
 
