@@ -162,6 +162,7 @@ class ViewController: UIViewController {
             ResultLabel.text = String(Answer.clean)
             textResult = ResultLabel.text
             operatorUsed = ""
+            hasDecimal = false
         }
         else
         {
@@ -180,7 +181,8 @@ class ViewController: UIViewController {
         let OperationButton:String! = (button.titleLabel?.text)
         
         if(textResult.contains("+") || textResult.contains("‒") ||
-           textResult.contains("x") || textResult.contains("÷"))
+           textResult.contains("x") || textResult.contains("÷") ||
+           textResult == "")
         {
                
             print("contains operator already - Do Nothing")
@@ -194,11 +196,14 @@ class ViewController: UIViewController {
                 operatorUsed = "*"
             case "÷":
                 operatorUsed = "/"
+            case "%":
+                print("Function not Implemented Yet")
+                operatorUsed = ""
             default:
                 operatorUsed = OperationButton
             }
             
-            operatorUsed = OperationButton
+//          operatorUsed = OperationButton
             updateTextResult(value: OperationButton)
             
         }
@@ -259,8 +264,6 @@ class ViewController: UIViewController {
         let button = sender as UIButton
         let ExtraButton:String! = (button.titleLabel?.text)
         
-        
-        //can be converted to switch case (to be recoded)
         switch ExtraButton
         {
         case "C":
