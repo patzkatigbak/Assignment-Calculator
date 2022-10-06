@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Assignment-Calculator
 //
-//  Created by Patrick Katigbak, Sao Kuan I,  on 2022-09-19.
+//  Created by Patrick Katigbak, Sao Kuan I, Michelle C K  on 2022-09-19.
 //
 
 import UIKit
@@ -54,7 +54,6 @@ class ViewController: UIViewController {
         {
           //  var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(String.init)
             
-            
             let numberSplitArray = Result?.components(separatedBy: operatorUsed)
             var firstNumString = String(numberSplitArray![0])
             var secondNumString = String(numberSplitArray![1])
@@ -98,8 +97,8 @@ class ViewController: UIViewController {
     func clearTextResult()
     {
         hasDecimal = false
-        textResult = ""
-        ResultLabel.text = ""
+        textResult = "0"
+        ResultLabel.text = textResult
         operatorUsed = ""
         
     }
@@ -126,18 +125,29 @@ class ViewController: UIViewController {
             }
         }
         
+        if(ResultLabel.text == "")
+        {
+            textResult = "0"
+            ResultLabel.text = textResult
+            hasDecimal = false
+        }
+        
+        
     }
     
     func calculateResult()
     {
         //clean the textResult by removing the parenthesis
         var Result = ResultLabel.text
+        let remainder: Int = 0
         Result!.removeAll(where: { removeCharacters.contains($0) })
         print("After Cleaning = \(Result)")
         
         //calculate result will only be performed if theres operator used
         if(operatorUsed != "")
         {
+            
+            var formatResult8Decimal:Float = 0.0
             var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Float.init)
             var firstNum = Float(numberSplitArray?[0] ?? 00 )
             var secondNum = Float(numberSplitArray?[1] ?? 00 )
@@ -150,7 +160,7 @@ class ViewController: UIViewController {
                 Answer = firstNum + secondNum
             case "‒":
                 Answer = firstNum - secondNum
-            case "x":
+            case "*":
                 Answer = firstNum * secondNum
             case "÷":
                 Answer = firstNum / secondNum
@@ -158,8 +168,22 @@ class ViewController: UIViewController {
                 print("Invalid Operator")
             }
 
-        
-            ResultLabel.text = String(Answer.clean)
+            
+           // formatResult8Decimal = round(value * 1000) / 1000.0
+//            formatResult8Decimal = Float(String(Answer.clean))!
+//            formatResult8Decimal = round(formatResult8Decimal * 100000000) / 100000000.0
+            
+            if (Answer.truncatingRemainder(dividingBy: 1) == 0)
+            {
+                textResult = String(format: "%.0f", Answer)
+            }
+            else
+            {
+                textResult = String(Answer)
+                //cut the string to 8
+            }
+            ResultLabel.text = textResult
+            
             textResult = ResultLabel.text
             operatorUsed = ""
             hasDecimal = false
@@ -178,11 +202,11 @@ class ViewController: UIViewController {
         
         let button = sender as UIButton
         
-        let OperationButton:String! = (button.titleLabel?.text)
+        var OperationButton:String! = (button.titleLabel?.text)
         
         if(textResult.contains("+") || textResult.contains("‒") ||
            textResult.contains("x") || textResult.contains("÷") ||
-           textResult == "")
+           textResult == "" || textResult.contains("*"))
         {
                
             print("contains operator already - Do Nothing")
@@ -194,8 +218,9 @@ class ViewController: UIViewController {
             {
             case "x":
                 operatorUsed = "*"
+                OperationButton = "*"
             case "÷":
-                operatorUsed = "/"
+                operatorUsed = "÷"
             case "%":
                 print("Function not Implemented Yet")
                 operatorUsed = ""
@@ -218,13 +243,19 @@ class ViewController: UIViewController {
 
         let numberButton:String! = (button.titleLabel?.text)
 
+        textResult  = ResultLabel.text
         //get the first character
         let firstCharacter = textResult.prefix(1)
         
         let lastCharacter = textResult.suffix(1)
         
-        print(firstCharacter)
-        print(hasDecimal)
+        
+        if((numberButton == "." && operatorUsed != "" && hasDecimal == false) &&
+            ((textResult.suffix(1) == "0") ||  (textResult.suffix(1) == operatorUsed))  )
+        {
+            print("went hereaaa")
+            updateTextResult(value: "0")
+        }
         
         if(hasDecimal==true && numberButton == ".")
         {
@@ -232,6 +263,25 @@ class ViewController: UIViewController {
         }
         else
         {
+            
+            if(numberButton == "." && textResult == "0" && operatorUsed == "")
+            {
+//                updateTextResult(value: "0")
+            }
+            else
+            {
+                if(textResult.suffix(2) == "-0")
+                {
+                    textResult.removeLast()
+                }
+                    
+                if(textResult == "0" && hasDecimal == false)
+                {
+                    textResult.removeLast()
+                }
+                
+            }
+            
             updateTextResult(value: numberButton)
             
             if(numberButton == ".")
@@ -249,10 +299,12 @@ class ViewController: UIViewController {
         
         switch Result
         {
-        case "":
-            updateTextResult(value: "-")
-        case "-":
-            updateTextResult(value: "")
+        case "0":
+            textResult = "-0"
+            ResultLabel.text = textResult
+        case "-0":
+            textResult = "0"
+            ResultLabel.text = textResult
         default:
             plusMinusUpdate()
         }
