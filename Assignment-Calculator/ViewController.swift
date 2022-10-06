@@ -1,9 +1,10 @@
 //
 //  ViewController.swift
-//  Assignment-Calculator
-//
-//  Created by Patrick Katigbak, Sao Kuan I, Michelle C K  on 2022-09-19.
-//
+//  Program ID: Assignment2-Calculator Basic Functionality
+//  Author: Patrick Katigbak(301253113), Sao Kuan I(301204757), Chan Yat Man(301279592)
+//  Description: Calculator with basic functionality working
+//  Last Modification: October 5, 2022
+
 
 import UIKit
 
@@ -29,15 +30,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+      
     }
     
+    //When +/- Button is pressed this function will be triggered
     func plusMinusUpdate()
     {
         var firstNum:Float = 0.0
         var secondNum:Float = 0.0
         var Result = ResultLabel.text
         
+        //This will put ( ) parethesis to input number when +/- is entered. to negate or reverse the negate
         if(operatorUsed == "")
         {
             
@@ -52,8 +55,7 @@ class ViewController: UIViewController {
         }
         else
         {
-          //  var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(String.init)
-            
+          
             let numberSplitArray = Result?.components(separatedBy: operatorUsed)
             var firstNumString = String(numberSplitArray![0])
             var secondNumString = String(numberSplitArray![1])
@@ -88,12 +90,10 @@ class ViewController: UIViewController {
 
         }
         
-
-//        textResult.removeLast()
-//        ResultLabel.text = textResult
         
     }
     
+    //this will be triggered when Clear button is pressed
     func clearTextResult()
     {
         hasDecimal = false
@@ -103,13 +103,15 @@ class ViewController: UIViewController {
         
     }
     
+    //THis will be triggered everytime a number/operation/extra buttion is pressed. this will Append the text in the screen
     func updateTextResult(value:String)
     {
         textResult = textResult + value
         ResultLabel.text = textResult
         
     }
-    
+
+    //This will be triggered when delete button is pressed
     func deleteChar()
     {
         
@@ -132,26 +134,24 @@ class ViewController: UIViewController {
             hasDecimal = false
         }
         
-        
     }
     
+    //This will do the calculation. when = button is pressed
     func calculateResult()
     {
         //clean the textResult by removing the parenthesis
         var Result = ResultLabel.text
         let remainder: Int = 0
         Result!.removeAll(where: { removeCharacters.contains($0) })
-        print("After Cleaning = \(Result)")
         
         //calculate result will only be performed if theres operator used
         if(operatorUsed != "")
         {
-            
-            var formatResult8Decimal:Float = 0.0
-            var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Float.init)
-            var firstNum = Float(numberSplitArray?[0] ?? 00 )
-            var secondNum = Float(numberSplitArray?[1] ?? 00 )
-            var Answer:Float = 0.0
+
+            var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Double.init)
+            var firstNum = Double(numberSplitArray?[0] ?? 00 )
+            var secondNum = Double(numberSplitArray?[1] ?? 00 )
+            var Answer:Double = 0.00
             print("answer is \(Answer)")
 
             switch operatorUsed
@@ -168,10 +168,7 @@ class ViewController: UIViewController {
                 print("Invalid Operator")
             }
 
-            
-           // formatResult8Decimal = round(value * 1000) / 1000.0
-//            formatResult8Decimal = Float(String(Answer.clean))!
-//            formatResult8Decimal = round(formatResult8Decimal * 100000000) / 100000000.0
+    
             
             if (Answer.truncatingRemainder(dividingBy: 1) == 0)
             {
@@ -179,12 +176,11 @@ class ViewController: UIViewController {
             }
             else
             {
-                textResult = String(Answer)
-                //cut the string to 8
+                textResult = String(Answer.removeZerosFromEnd())
             }
-            ResultLabel.text = textResult
             
-            textResult = ResultLabel.text
+            
+            ResultLabel.text = textResult
             operatorUsed = ""
             hasDecimal = false
         }
@@ -228,7 +224,6 @@ class ViewController: UIViewController {
                 operatorUsed = OperationButton
             }
             
-//          operatorUsed = OperationButton
             updateTextResult(value: OperationButton)
             
         }
@@ -244,7 +239,7 @@ class ViewController: UIViewController {
         let numberButton:String! = (button.titleLabel?.text)
 
         textResult  = ResultLabel.text
-        //get the first character
+     
         let firstCharacter = textResult.prefix(1)
         
         let lastCharacter = textResult.suffix(1)
@@ -311,6 +306,22 @@ class ViewController: UIViewController {
          
     }
     
+    @IBAction func Percent_Button_pressed(_ sender: UIButton) {
+        var Result = ResultLabel.text
+        var Answer:Float = 0.0
+        
+        //will be performed only when theres no current operation
+        if(operatorUsed == "")
+        {
+            Answer = Float(Result!)! / 100
+            
+            textResult = String(Answer)
+            
+            ResultLabel.text = textResult
+        }
+
+    }
+    
     @IBAction func Extra_Button_pressed(_ sender: UIButton) {
         
         let button = sender as UIButton
@@ -330,11 +341,14 @@ class ViewController: UIViewController {
     }
 }
 
-extension Float
-{
-    var clean:String
-    {
-        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.8f", self)
+/*This extension and function below was taken from: https://stackoverflow.com/questions/29560743/swift-remove-trailing-zeros-from-double#:~:text=In%20Swift%204%20you%20can,precision)%20return%20String(formatter.
+*/
+extension Double {
+    func removeZerosFromEnd() -> String {
+        let formatter = NumberFormatter()
+        let number = NSNumber(value: self)
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 8
+        return String(formatter.string(from: number) ?? "")
     }
 }
-
