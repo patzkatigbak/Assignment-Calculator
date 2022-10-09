@@ -33,7 +33,7 @@ class ViewController: UIViewController {
       
     }
     
-    //When +/- Button is pressed this function will be triggered
+    //When +/- Button is pressed and the screen result or value is not zero this function will be triggered
     func plusMinusUpdate()
     {
         var firstNum:Float = 0.0
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         
     }
     
-    //this will be triggered when Clear button is pressed
+    /*this will be triggered when Clear button is pressed*/
     func clearTextResult()
     {
         hasDecimal = false
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
         
     }
     
-    //THis will be triggered everytime a number/operation/extra buttion is pressed. this will Append the text in the screen
+    /*This will be triggered everytime a number/operation/extra buttion is pressed. this will Append the text in the screen*/
     func updateTextResult(value:String)
     {
         textResult = textResult + value
@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         
     }
 
-    //This will be triggered when delete button is pressed
+    /*This will be triggered when delete button is pressed*/
     func deleteChar()
     {
         
@@ -136,15 +136,15 @@ class ViewController: UIViewController {
         
     }
     
-    //This will do the calculation. when = button is pressed
+    /*This will do the calculation. when = button is pressed*/
     func calculateResult()
     {
-        //clean the textResult by removing the parenthesis
+        /*clean the textResult by removing the parenthesis*/
         var Result = ResultLabel.text
         let remainder: Int = 0
         Result!.removeAll(where: { removeCharacters.contains($0) })
         
-        //calculate result will only be performed if theres operator used
+        /*calculate result will only be performed if theres operator used*/
         if(operatorUsed != "")
         {
 
@@ -192,6 +192,7 @@ class ViewController: UIViewController {
     }
     
 
+    /*This will be triggeree when any operation button is pressed*/
     @IBAction func Operation_Button_Pressed(_ sender: UIButton) {
         
         hasDecimal = false
@@ -231,6 +232,7 @@ class ViewController: UIViewController {
     }
     
     
+    /*when any numeric button is pressed, this will be triggered*/
     @IBAction func Number_Button_Pressed(_ sender: UIButton) {
         
         //set the label on what the button is clicked
@@ -248,7 +250,6 @@ class ViewController: UIViewController {
         if((numberButton == "." && operatorUsed != "" && hasDecimal == false) &&
             ((textResult.suffix(1) == "0") ||  (textResult.suffix(1) == operatorUsed))  )
         {
-            print("went hereaaa")
             updateTextResult(value: "0")
         }
         
@@ -288,6 +289,7 @@ class ViewController: UIViewController {
     }
     
     
+    /*When +/- is pressed*/
     @IBAction func SpecialPlusMinus_Button_Pressed(_ sender: UIButton) {
         
         var Result = ResultLabel.text
@@ -314,8 +316,7 @@ class ViewController: UIViewController {
         if(operatorUsed == "")
         {
             let removeCharacters: Set<Character> = ["(", ")"]
-            
-//            var firstNumString = Result
+
             Result!.removeAll(where: { removeCharacters.contains($0) })
             
             Answer = Float(Result!)! / 100
@@ -323,6 +324,8 @@ class ViewController: UIViewController {
             textResult = String(Answer)
             
             ResultLabel.text = textResult
+            
+            hasDecimal = false
         }
 
     }
