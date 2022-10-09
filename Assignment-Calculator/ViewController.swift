@@ -313,6 +313,11 @@ class ViewController: UIViewController {
         //will be performed only when theres no current operation
         if(operatorUsed == "")
         {
+            let removeCharacters: Set<Character> = ["(", ")"]
+            
+//            var firstNumString = Result
+            Result!.removeAll(where: { removeCharacters.contains($0) })
+            
             Answer = Float(Result!)! / 100
             
             textResult = String(Answer)
