@@ -134,6 +134,34 @@ class ViewController: UIViewController {
             hasDecimal = false
         }
         
+        if(operatorUsed != "")
+        {
+            let numberSplitArray = textResult?.components(separatedBy: operatorUsed)
+            var firstNumString = String(numberSplitArray![0])
+            var secondNumString = String(numberSplitArray![1])
+            
+            if(secondNumString.contains("."))
+            {
+                hasDecimal = true
+            }
+            else
+            {
+                hasDecimal = false
+            }
+        }
+        else
+        {
+            if(textResult.contains("."))
+            {
+                hasDecimal = true
+            }
+            else
+            {
+                hasDecimal = false
+            }
+        }
+
+        
     }
     
     /*This will do the calculation. when = button is pressed*/
@@ -190,6 +218,29 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    
+    func displayAlert(alertMessage:String)
+    {
+        let alert = UIAlertController(title: "Alert!",
+                                              message: alertMessage,
+                                              preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default,
+                                           handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+    }
+    
+    /*This function will get the factorial of input*/
+    func factorialValue(fNumber: Int) -> Int{
+       if fNumber == 0{
+          return 1
+       } else {
+          return fNumber * factorialValue(fNumber:fNumber-1)
+       }
+    }
+    
+    
     
 
     /*This will be triggeree when any operation button is pressed*/
@@ -347,6 +398,117 @@ class ViewController: UIViewController {
             print("Do nothing - Function not implemented yet")
         }
     }
+    
+    @IBAction func Factorial_Button_pressed(_ sender: UIButton) {
+        
+        if(operatorUsed == "" && hasDecimal == false)
+        {
+            var input :Int = 0
+            var answer:Int = 0
+            
+            textResult = ResultLabel.text
+            
+            input = Int(textResult)!
+
+            answer = factorialValue(fNumber: input)
+            
+            textResult = String(answer)
+            
+            ResultLabel.text = textResult
+                
+        }
+        else
+        {
+            displayAlert(alertMessage: "Factorial must be Integer only")
+        }
+        
+    }
+    
+    @IBAction func Scientific_Button_pressed(_ sender: UIButton) {
+        
+        let button = sender as UIButton
+        let ScientificButton:String! = (button.titleLabel?.text)
+        
+        switch ScientificButton
+        {
+        case "n!":
+            if(operatorUsed == "" && hasDecimal == false)
+            {
+                var input :Int = 0
+                var answer:Int = 0
+                
+                textResult = ResultLabel.text
+                textResult!.removeAll(where: { removeCharacters.contains($0) })
+
+                input = Int(textResult)!
+
+                answer = factorialValue(fNumber: input)
+                
+                textResult = String(answer)
+                
+                ResultLabel.text = textResult
+                    
+            }
+            else
+            {
+                displayAlert(alertMessage: "Factorial must be Integer only")
+            }
+            
+        case "Log":
+            if(operatorUsed == "")
+            {
+                var input :Double = 0.0
+                var answer:Double = 0.0
+                
+                textResult = ResultLabel.text
+                textResult!.removeAll(where: { removeCharacters.contains($0) })
+                
+                input = Double(textResult)!
+
+                answer = log(input)
+                
+                textResult = String(answer)
+                
+                ResultLabel.text = textResult
+                    
+            }
+            else
+            {
+                displayAlert(alertMessage: "Must be single Input only. Remove Operator")
+            }
+            
+        case "exp()":
+            if(operatorUsed == "")
+            {
+                var input :Double = 0.0
+                var answer:Double = 0.0
+                
+                textResult = ResultLabel.text
+                textResult!.removeAll(where: { removeCharacters.contains($0) })
+                
+                input = Double(textResult)!
+
+                answer = exp(input)
+                
+                textResult = String(answer)
+                
+                ResultLabel.text = textResult
+                    
+            }
+            else
+            {
+                displayAlert(alertMessage: "Must be single Input only. Remove Operator")
+            }
+        case "x²":
+            displayAlert(alertMessage: "Function not yet implemented")
+        case "√":
+            displayAlert(alertMessage: "Function not yet implemented")
+        default:
+            displayAlert(alertMessage: "Function not yet implemented")
+        }
+    }
+    
+    
 }
 
 /*This extension and function below was taken from: https://stackoverflow.com/questions/29560743/swift-remove-trailing-zeros-from-double#:~:text=In%20Swift%204%20you%20can,precision)%20return%20String(formatter.
