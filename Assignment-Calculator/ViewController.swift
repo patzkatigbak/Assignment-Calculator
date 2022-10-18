@@ -64,8 +64,6 @@ class ViewController: UIViewController {
             var firstNumString = String(numberSplitArray![0])
             var secondNumString = String(numberSplitArray![1])
             
-            print("first num is \(firstNumString) and 2nd num is \(secondNumString)" )
-            
             if (secondNumString == "" || secondNumString == "0" || secondNumString == "0." || secondNumString == "-")
             {
                 if(secondNumString == "-")
@@ -276,6 +274,11 @@ class ViewController: UIViewController {
         textResult = String(answer)
         
         ResultLabel.text = textResult
+        
+        if(textResult.contains("."))
+        {
+            hasDecimal = true
+        }
     }
     
     
@@ -446,6 +449,7 @@ class ViewController: UIViewController {
         if(operatorUsed == "")
         {
             scientificFunction(function: ScientificButton)
+            
         }
         else{
             displayAlert(alertMessage: "Remove Operator From the Input!")
