@@ -1,12 +1,16 @@
-//
-//  ViewController.swift
-//  Program ID: Assignment2-Calculator Basic Functionality
-//  Author: Patrick Katigbak(301253113), Sao Kuan I(301204757), Chan Yat Man(301279592)
-//  Description: Calculator with basic functionality working
-//  Last Modification: October 5, 2022
+/*
+    ViewController.swift
+    Program ID: Assignment2-Calculator Basic Functionality
+    Author: Patrick Katigbak(301253113), Sao Kuan I(301204757), Chan Yat Man(301279592)
+    Description: Assignment 1 - Calculator UI only without backend logic and functions
+                 Assignment 2 - Calculator with basic functionality working
+                 Assignment 3 - Calculator with scientific functionality working + landscape View
+    Last Modification: October 18, 2022
+ */
 
 
 import UIKit
+import Foundation
 
 
 
@@ -172,54 +176,64 @@ class ViewController: UIViewController {
         let remainder: Int = 0
         Result!.removeAll(where: { removeCharacters.contains($0) })
         
-        /*calculate result will only be performed if theres operator used*/
-        if(operatorUsed != "")
+        var lastchar = textResult.suffix(1)
+        
+        if(lastchar == operatorUsed)
         {
-
-            var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Double.init)
-            var firstNum = Double(numberSplitArray?[0] ?? 00 )
-            var secondNum = Double(numberSplitArray?[1] ?? 00 )
-            var Answer:Double = 0.00
-            print("answer is \(Answer)")
-
-            switch operatorUsed
-            {
-            case "+":
-                Answer = firstNum + secondNum
-            case "‒":
-                Answer = firstNum - secondNum
-            case "*":
-                Answer = firstNum * secondNum
-            case "÷":
-                Answer = firstNum / secondNum
-            default:
-                print("Invalid Operator")
-            }
-
-    
-            
-            if (Answer.truncatingRemainder(dividingBy: 1) == 0)
-            {
-                textResult = String(format: "%.0f", Answer)
-            }
-            else
-            {
-                textResult = String(Answer.removeZerosFromEnd())
-            }
-            
-            
-            ResultLabel.text = textResult
-            operatorUsed = ""
-            hasDecimal = false
+            displayAlert(alertMessage: "Missing 2nd input")
         }
         else
         {
-            print("No Operator used")
+            
+            /*calculate result will only be performed if theres operator used*/
+            if(operatorUsed != "")
+            {
+
+                var numberSplitArray = Result?.components(separatedBy: operatorUsed).compactMap(Double.init)
+                var firstNum = Double(numberSplitArray?[0] ?? 00 )
+                var secondNum = Double(numberSplitArray?[1] ?? 00 )
+                var Answer:Double = 0.00
+
+                switch operatorUsed
+                {
+                case "+":
+                    Answer = firstNum + secondNum
+                case "‒":
+                    Answer = firstNum - secondNum
+                case "*":
+                    Answer = firstNum * secondNum
+                case "÷":
+                    Answer = firstNum / secondNum
+                default:
+                    print("Invalid Operator")
+                }
+
+        
+                
+                if (Answer.truncatingRemainder(dividingBy: 1) == 0)
+                {
+                    textResult = String(format: "%.0f", Answer)
+                }
+                else
+                {
+                    textResult = String(Answer.removeZerosFromEnd())
+                }
+                
+                
+                ResultLabel.text = textResult
+                operatorUsed = ""
+                hasDecimal = false
+            }
+            else
+            {
+                displayAlert(alertMessage: "No Operator Used!")
+            }
+            
         }
         
     }
-    
-    
+
+    /*Function that will display error message. Input parameter will be the error message*/
     func displayAlert(alertMessage:String)
     {
         let alert = UIAlertController(title: "Alert!",
@@ -231,15 +245,38 @@ class ViewController: UIViewController {
                 present(alert, animated: true, completion: nil)
     }
     
-    /*This function will get the factorial of input*/
-    func factorialValue(fNumber: Int) -> Int{
-       if fNumber == 0{
-          return 1
-       } else {
-          return fNumber * factorialValue(fNumber:fNumber-1)
-       }
+    /*This funtion will perform the Scientific function (only applicable for Landscape View)*/
+    func scientificFunction(function:String)
+    {
+        var input :Double = 0.0
+        var answer:Double = 0.0
+        var pi:Double = Double.pi
+        
+        textResult = ResultLabel.text
+        textResult!.removeAll(where: { removeCharacters.contains($0) })
+        
+        input = Double(textResult)!
+
+        switch function
+        {
+        case "cos":
+            answer = cos(input * (pi/180))
+        case "tan":
+            answer = tan(input * (pi/180))
+        case "sin":
+            answer = sin(input * (pi/180))
+        case "log":
+            answer = log(input)
+        case "exp":
+            answer = exp(input)
+        default:
+            displayAlert(alertMessage: "Function not yet implemented!")
+        }
+        
+        textResult = String(answer)
+        
+        ResultLabel.text = textResult
     }
-    
     
     
 
@@ -257,7 +294,7 @@ class ViewController: UIViewController {
            textResult == "" || textResult.contains("*"))
         {
                
-            print("contains operator already - Do Nothing")
+            displayAlert(alertMessage: "Contains Operator Already. Remove exising Operator first")
             
         }
         else
@@ -270,8 +307,8 @@ class ViewController: UIViewController {
             case "÷":
                 operatorUsed = "÷"
             case "%":
-                print("Function not Implemented Yet")
                 operatorUsed = ""
+                displayAlert(alertMessage: "Function not Implemented yet")
             default:
                 operatorUsed = OperationButton
             }
@@ -395,119 +432,26 @@ class ViewController: UIViewController {
         case "=":
             calculateResult()
         default:
-            print("Do nothing - Function not implemented yet")
+            displayAlert(alertMessage: "Function not implemented yet")
         }
     }
     
-    @IBAction func Factorial_Button_pressed(_ sender: UIButton) {
-        
-        if(operatorUsed == "" && hasDecimal == false)
-        {
-            var input :Int = 0
-            var answer:Int = 0
-            
-            textResult = ResultLabel.text
-            
-            input = Int(textResult)!
-
-            answer = factorialValue(fNumber: input)
-            
-            textResult = String(answer)
-            
-            ResultLabel.text = textResult
-                
-        }
-        else
-        {
-            displayAlert(alertMessage: "Factorial must be Integer only")
-        }
-        
-    }
     
     @IBAction func Scientific_Button_pressed(_ sender: UIButton) {
         
         let button = sender as UIButton
         let ScientificButton:String! = (button.titleLabel?.text)
         
-        switch ScientificButton
+        
+        if(operatorUsed == "")
         {
-        case "n!":
-            if(operatorUsed == "" && hasDecimal == false)
-            {
-                var input :Int = 0
-                var answer:Int = 0
-                
-                textResult = ResultLabel.text
-                textResult!.removeAll(where: { removeCharacters.contains($0) })
-
-                input = Int(textResult)!
-
-                answer = factorialValue(fNumber: input)
-                
-                textResult = String(answer)
-                
-                ResultLabel.text = textResult
-                    
-            }
-            else
-            {
-                displayAlert(alertMessage: "Factorial must be Integer only")
-            }
-            
-        case "Log":
-            if(operatorUsed == "")
-            {
-                var input :Double = 0.0
-                var answer:Double = 0.0
-                
-                textResult = ResultLabel.text
-                textResult!.removeAll(where: { removeCharacters.contains($0) })
-                
-                input = Double(textResult)!
-
-                answer = log(input)
-                
-                textResult = String(answer)
-                
-                ResultLabel.text = textResult
-                    
-            }
-            else
-            {
-                displayAlert(alertMessage: "Must be single Input only. Remove Operator")
-            }
-            
-        case "exp()":
-            if(operatorUsed == "")
-            {
-                var input :Double = 0.0
-                var answer:Double = 0.0
-                
-                textResult = ResultLabel.text
-                textResult!.removeAll(where: { removeCharacters.contains($0) })
-                
-                input = Double(textResult)!
-
-                answer = exp(input)
-                
-                textResult = String(answer)
-                
-                ResultLabel.text = textResult
-                    
-            }
-            else
-            {
-                displayAlert(alertMessage: "Must be single Input only. Remove Operator")
-            }
-        case "x²":
-            displayAlert(alertMessage: "Function not yet implemented")
-        case "√":
-            displayAlert(alertMessage: "Function not yet implemented")
-        default:
-            displayAlert(alertMessage: "Function not yet implemented")
+            scientificFunction(function: ScientificButton)
         }
+        else{
+            displayAlert(alertMessage: "Remove Operator From the Input!")
+        }
+        
     }
-    
     
 }
 

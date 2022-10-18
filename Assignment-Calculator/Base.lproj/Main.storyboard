@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NRn-zo-rJ4" userLabel="Third Row Stack View">
-                                <rect key="frame" x="16" y="538" width="192" height="75"/>
+                                <rect key="frame" x="16" y="535" width="192" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AU-eF-Clo">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="75"/>
@@ -152,7 +152,7 @@
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rXS-NU-bL8" userLabel="Fourth Row Stack View">
-                                <rect key="frame" x="16" y="621" width="208" height="75"/>
+                                <rect key="frame" x="16" y="618" width="208" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DP-jS-twj">
                                         <rect key="frame" x="0.0" y="0.0" width="37" height="75"/>
@@ -274,7 +274,7 @@
                                 <variation key="heightClass=compact-widthClass=compact" hidden="YES"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mmO-HY-Nn7" userLabel="Second Row Stack View">
-                                <rect key="frame" x="16" y="455" width="192" height="75"/>
+                                <rect key="frame" x="16" y="452" width="192" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDg-as-xaL">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="75"/>
@@ -410,7 +410,7 @@
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5kk-yg-xrc" userLabel="First Row Stack View">
-                                <rect key="frame" x="16.000000000000014" y="372" width="241.33333333333334" height="75"/>
+                                <rect key="frame" x="16.000000000000014" y="369" width="241.33333333333334" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n7K-Zi-iyg">
                                         <rect key="frame" x="0.0" y="0.0" width="45.333333333333336" height="75"/>
@@ -546,7 +546,7 @@
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d8O-1d-IfU" userLabel="Fifth Row Stack View">
-                                <rect key="frame" x="15.999999999999986" y="704" width="233.33333333333334" height="75"/>
+                                <rect key="frame" x="16.000000000000014" y="701" width="233.33333333333334" height="75"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p30-2z-Mdy">
                                         <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="75"/>
@@ -774,7 +774,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="√ ">
+                                                <buttonConfiguration key="configuration" style="filled" title="exp">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -802,7 +802,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Log">
+                                                <buttonConfiguration key="configuration" style="filled" title="log">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -1045,7 +1045,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="exp()">
+                                                <buttonConfiguration key="configuration" style="filled" title="tan">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -1073,7 +1073,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="n!">
+                                                <buttonConfiguration key="configuration" style="filled" title="sin">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -1117,6 +1117,9 @@
                                                         <include reference="QxE-0b-Tp5"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="Operation_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WHA-5w-WIR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGg-7u-8dp">
                                                 <rect key="frame" x="270" y="0.0" width="70" height="70"/>
@@ -1142,6 +1145,9 @@
                                                         <include reference="IQy-hY-Y25"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="Operation_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qk3-yO-RIo"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5v9-CN-4sw">
                                                 <rect key="frame" x="360" y="0.0" width="70" height="70"/>
@@ -1310,7 +1316,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="x²">
+                                                <buttonConfiguration key="configuration" style="filled" title="cos">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -1354,6 +1360,9 @@
                                                         <include reference="FlV-kR-rMK"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="Operation_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hXS-LO-tFp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEP-x5-eC5">
                                                 <rect key="frame" x="270" y="0.0" width="70" height="70"/>
@@ -1363,7 +1372,7 @@
                                                 </constraints>
                                                 <color key="tintColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="-">
+                                                <buttonConfiguration key="configuration" style="filled" title="‒">
                                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="baseBackgroundColor" red="0.61568629740000003" green="0.70588237050000002" blue="0.75294119120000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </buttonConfiguration>
@@ -1379,6 +1388,9 @@
                                                         <include reference="hfp-To-gqB"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="Operation_Button_Pressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zwf-UN-XFx"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buG-NN-CMY">
                                                 <rect key="frame" x="360" y="0.0" width="70" height="70"/>
