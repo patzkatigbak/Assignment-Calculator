@@ -255,6 +255,7 @@ class ViewController: UIViewController {
         
         input = Double(textResult)!
 
+        //perform scientific calculation based on the operation used by user
         switch function
         {
         case "cos":
